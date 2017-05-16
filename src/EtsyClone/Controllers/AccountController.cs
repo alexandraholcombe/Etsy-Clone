@@ -21,6 +21,13 @@ namespace EtsyClone.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         //private readonly RoleManager<Role> _roleManager;
 
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            //_db = db;
+        }
+
         // GET: /<controller>/
         public IActionResult Index()
         {
