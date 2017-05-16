@@ -29,10 +29,10 @@ namespace EtsyClone.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<ApplicationUser>()
-                .HasOne(e => e.UserProfile)
-                .WithOne(c => c.ApplicationUser)
-                .HasForeignKey<UserProfile>(b => b.Id);
+            //builder.Entity<UserProfile>()
+            //    .HasOne(c => c.ApplicationUser)
+            //    .WithOne(d => d.UserProfile)
+            //    .HasForeignKey<ApplicationUser>(e => e.UserProfileId);
             base.OnModelCreating(builder);
         }
     }

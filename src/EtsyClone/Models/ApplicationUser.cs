@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EtsyClone.Models
 {
@@ -16,6 +17,6 @@ namespace EtsyClone.Models
         //    var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
         //    return userIdentity;
         //}
-        public UserProfile UserProfile { get; internal set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

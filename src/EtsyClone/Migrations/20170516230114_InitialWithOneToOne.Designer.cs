@@ -8,8 +8,8 @@ using EtsyClone.Models;
 namespace EtsyClone.Migrations
 {
     [DbContext(typeof(EtsyContext))]
-    [Migration("20170516174807_Initial")]
-    partial class Initial
+    [Migration("20170516230114_InitialWithOneToOne")]
+    partial class InitialWithOneToOne
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,15 +68,21 @@ namespace EtsyClone.Migrations
 
             modelBuilder.Entity("EtsyClone.Models.UserProfile", b =>
                 {
-                    b.Property<string>("AccountId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("About");
+
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.HasKey("AccountId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
 
                     b.ToTable("UserProfiles");
                 });
@@ -186,6 +192,13 @@ namespace EtsyClone.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("EtsyClone.Models.UserProfile", b =>
+                {
+                    b.HasOne("EtsyClone.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("UserProfile")
+                        .HasForeignKey("EtsyClone.Models.UserProfile", "ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
