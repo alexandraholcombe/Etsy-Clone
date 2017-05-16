@@ -32,7 +32,8 @@ namespace EtsyClone.Models
             builder.Entity<ApplicationUser>()
                 .HasOne(e => e.UserProfile)
                 .WithOne(c => c.ApplicationUser)
-                .HasForeignKey<UserProfile>(b => b.Id);
+                .HasForeignKey<UserProfile>(b => b.ApplicationUser)
+                .HasPrincipalKey<ApplicationUser>(b => b.Id);
             base.OnModelCreating(builder);
         }
     }

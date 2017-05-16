@@ -11,11 +11,12 @@ namespace EtsyClone.Models
     public class UserProfile
     {
         [Key]
-        public int Id { get; set; }
+        public int ProfileId { get; set; }
         //public string AccountId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string About { get; set; }
+        [ForeignKey("Id")]
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -103,11 +103,15 @@ namespace EtsyClone.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                var id = user.Id;
+                //var id = user.Id;
+                //UserProfile profile = new UserProfile();
+                //profile.ApplicationUser = user;
+                //_db.UserProfiles.Add(profile);
                 UserProfile profile = new UserProfile();
-                profile.AccountId = id;
+                user.UserProfile = profile;
                 _db.UserProfiles.Add(profile);
-                return RedirectToAction("Index");
+                _db.Update(user);
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -117,3 +121,4 @@ namespace EtsyClone.Controllers
     }
 }
 
+//http://stackoverflow.com/questions/33016771/configuring-one-to-one-relationship-in-asp-net-identity
