@@ -117,3 +117,4 @@ namespace EtsyClone.Controllers
     }
 }
 
+//http://stackoverflow.com/questions/33016771/configuring-one-to-one-relationship-in-asp-net-identity
