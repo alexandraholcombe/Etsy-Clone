@@ -103,8 +103,10 @@ namespace EtsyClone.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                UserProfile profile = new UserProfile();
-                profile.ApplicationUserId = user.Id;
+                UserProfile profile = new UserProfile { ApplicationUserId = user.Id, FirstName = model.FirstName, LastName = model.LastName };
+                //profile.ApplicationUserId = user.Id;
+                //profile.FirstName = model.FirstName;
+                //profile.LastName = model.LastName;
                 _db.UserProfiles.Add(profile);
                 _db.SaveChanges();
                 return RedirectToAction("Index", "Home");
