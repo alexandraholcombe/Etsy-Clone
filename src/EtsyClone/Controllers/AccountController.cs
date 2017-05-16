@@ -51,7 +51,7 @@ namespace EtsyClone.Controllers
                 Regex re = new Regex(emailRegex);
                 if (!re.IsMatch(model.Email))
                 {
-                    ModelState.AddModelError("Email", "Email is not valid");
+                    //ModelState.AddModelError("Email", "Email is not valid");
                 }
             }
             else
@@ -61,7 +61,7 @@ namespace EtsyClone.Controllers
                 Regex re = new Regex(emailRegex);
                 if (!re.IsMatch(model.Email))
                 {
-                    ModelState.AddModelError("Email", "Username is not valid");
+                    //ModelState.AddModelError("Email", "Username is not valid");
                 }
             }
             var userName = model.Email;
@@ -70,7 +70,7 @@ namespace EtsyClone.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    //ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
                 else
@@ -118,5 +118,3 @@ namespace EtsyClone.Controllers
         }
     }
 }
-
-//http://stackoverflow.com/questions/33016771/configuring-one-to-one-relationship-in-asp-net-identity
