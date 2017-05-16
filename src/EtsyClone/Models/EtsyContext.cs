@@ -14,7 +14,7 @@ namespace EtsyClone.Models
 
         }
 
-        DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
 
         public EtsyContext(DbContextOptions options) : base(options)
         {
@@ -29,6 +29,10 @@ namespace EtsyClone.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ApplicationUser>()
+                .HasOne(e => e.UserProfile)
+                .WithOne(c => c.ApplicationUser)
+                .HasForeignKey<UserProfile>(b => b.Id);
             base.OnModelCreating(builder);
         }
     }

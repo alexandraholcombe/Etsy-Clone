@@ -21,11 +21,11 @@ namespace EtsyClone.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         //private readonly RoleManager<Role> _roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, EtsyContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            //_db = db;
+            _db = db;
         }
 
         // GET: /<controller>/
@@ -103,6 +103,10 @@ namespace EtsyClone.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
+                var id = user.Id;
+                UserProfile profile = new UserProfile();
+                profile.AccountId = id;
+                _db.UserProfiles.Add(profile);
                 return RedirectToAction("Index");
             }
             else
