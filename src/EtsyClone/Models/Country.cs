@@ -15,19 +15,18 @@ namespace EtsyClone.Models
 
         public static List<Country> GetCountries()
         {
-            var client = new RestClient("https://api.github.com/");
-            var request = new RestRequest("users/alexandraholcombe/starred?sort=created&direction=asc&per_page=3", Method.GET);
-            request.AddHeader("User-Agent", "alexandraholcombe");
-            request.AddHeader("Accept", "application/json");
+            var client = new RestClient("https://openapi.etsy.com/v2/");
+            var request = new RestRequest("countries?api_key=" + EnvironmentVariables.EtsyKey, Method.GET);
+            //request.AddHeader("User-Agent", "alexandraholcombe");
+            //request.AddHeader("Accept", "application/json");
             var response = new RestResponse();
             Task.Run(async () =>
             {
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
-            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(response.Content);
-            var projectList = JsonConvert.DeserializeObject<List<Project>>(jsonResponse.ToString());
-            return projectList;
-
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+            var countryList = JsonConvert.DeserializeObject<List<Country>>(jsonResponse.ToString());
+            return countryList;
         }
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
         {
