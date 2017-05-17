@@ -22,9 +22,9 @@ namespace EtsyClone.Models
             return FirstName + " " + LastName;
         }
 
-        public string PosessiveFullName()
+        public string PosessiveName(string input)
         {
-            return CombineName() + "'s";
+            return input + "'s";
         }
     }
 }
