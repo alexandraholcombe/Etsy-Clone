@@ -34,7 +34,7 @@ namespace EtsyClone.Controllers
 
         public IActionResult Profile(string username)
         {
-            //username = "allieh";
+            username = "allieh";
             ProfileViewModel vm = new ProfileViewModel();
             vm.Account = _db.Users.FirstOrDefault(u => u.UserName == username);
             vm.Profile = _db.UserProfiles.FirstOrDefault(p => p.ApplicationUserId == vm.Account.Id);

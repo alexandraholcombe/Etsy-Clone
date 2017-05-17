@@ -21,5 +21,10 @@ namespace EtsyClone.Models
         {
             return FirstName + " " + LastName;
         }
+
+        public string PosessiveFullName()
+        {
+            return CombineName() + "'s";
+        }
     }
 }
