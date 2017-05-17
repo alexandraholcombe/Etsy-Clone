@@ -29,7 +29,9 @@
       "version": "1.0.1",
       "type": "platform"
     },
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "Newtonsoft.Json": "10.0.2",
+    "RestSharp.NetCore": "105.2.3"
   },
 
   "tools": {
