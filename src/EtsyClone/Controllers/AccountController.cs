@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using EtsyClone.Models;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -127,11 +128,19 @@ namespace EtsyClone.Controllers
         public IActionResult AddAddress()
         {
             List<Country> countries = Country.GetCountries();
+            IEnumerable<SelectListItem> selectList =
+                from c in countries
+                select new SelectListItem
+                {
+                    Text = c.name,
+                    Value = c.name
+                };
             var userId = _userManager.GetUserId(HttpContext.User);
             var user = _db.Users.FirstOrDefault(u => u.Id == userId);
             var profile = _db.UserProfiles.FirstOrDefault(p => p.ApplicationUserId == user.Id);
             NewAddressViewModel vm = new NewAddressViewModel();
             vm.UserProfileId = profile.Id;
+            vm.Countries = selectList;
             return View(vm);
         }
 

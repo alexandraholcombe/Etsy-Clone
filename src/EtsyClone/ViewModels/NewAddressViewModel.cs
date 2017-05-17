@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EtsyClone.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +10,8 @@ namespace EtsyClone.ViewModels
 {
     public class NewAddressViewModel
     {
+        public IEnumerable<SelectListItem> Countries { get; set; }
+
         [Required]
         public int UserProfileId { get; set; }
          
