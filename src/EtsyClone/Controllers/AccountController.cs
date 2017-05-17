@@ -82,7 +82,7 @@ namespace EtsyClone.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("WINNER", "Home");
             }
             else
             {

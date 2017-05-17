@@ -69,7 +69,7 @@ namespace EtsyClone
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
-
+            app.UseIdentity();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
