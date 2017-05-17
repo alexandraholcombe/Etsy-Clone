@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Shipping Addresses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model EtsyClone.ViewModels.NewAddressViewModel
+
+I'm working
+
+@using (Html.BeginForm("AddAddress", "Account", FormMethod.Post))
+            {
+    @Html.HiddenFor(m => m.UserProfileId)
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Country)
+            @Html.TextBoxFor(m => m.Country, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FullName)
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Street)
+            @Html.TextBoxFor(m => m.Street, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Street2)
+            @Html.TextBoxFor(m => m.Street2, new { @class = "form-control", type = "string", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ZipCode)
+            @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.City)
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.State)
+            @Html.TextBoxFor(m => m.State, new { @class = "form-control", required = "required" })
+        </div>
+    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save this address</button>
+                </div>
+}

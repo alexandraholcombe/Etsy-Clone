@@ -123,5 +123,24 @@ namespace EtsyClone.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult AddAddress()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var user = _db.Users.FirstOrDefault(u => u.Id == userId);
+            var profile = _db.UserProfiles.FirstOrDefault(p => p.ApplicationUserId == user.Id);
+            NewAddressViewModel vm = new NewAddressViewModel();
+            vm.UserProfileId = profile.Id;
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult AddAddress(NewAddressViewModel vm)
+        {
+            Address newAddress = Address.CreateAddress(vm);
+            _db.Addresses.Add(newAddress);
+            _db.SaveChanges();
+            return RedirectToAction("Addresses", "Account", vm.UserProfileId);
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace EtsyClone.Models
         public string About { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ICollection<Address> Addresses { get; set; }
 
         public string CombineName()
         {

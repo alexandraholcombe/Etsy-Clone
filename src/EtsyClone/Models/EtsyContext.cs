@@ -15,6 +15,7 @@ namespace EtsyClone.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet <Address> Addresses { get; set; }
 
         public EtsyContext(DbContextOptions options) : base(options)
         {

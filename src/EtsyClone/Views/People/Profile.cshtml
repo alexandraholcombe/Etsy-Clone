@@ -8,3 +8,5 @@
 @model ProfileViewModel
 
 <h1>@Model.Profile.PosessiveName(@Model.Profile.CombineName()) Profile</h1>
+
+@Html.ActionLink("Add Address", "AddAddress", "Account", Model.Profile.Id);

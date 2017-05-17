@@ -8,9 +8,10 @@ using EtsyClone.Models;
 namespace EtsyClone.Migrations
 {
     [DbContext(typeof(EtsyContext))]
-    partial class EtsyContextModelSnapshot : ModelSnapshot
+    [Migration("20170517210737_AddAddressesToContext")]
+    partial class AddAddressesToContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -33,13 +34,15 @@ namespace EtsyClone.Migrations
 
                     b.Property<string>("Street2");
 
-                    b.Property<int>("UserProfileId");
+                    b.Property<string>("UserProfileId");
+
+                    b.Property<int?>("UserProfileId1");
 
                     b.Property<string>("ZipCode");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserProfileId");
+                    b.HasIndex("UserProfileId1");
 
                     b.ToTable("Addresses");
                 });
@@ -225,8 +228,7 @@ namespace EtsyClone.Migrations
                 {
                     b.HasOne("EtsyClone.Models.UserProfile", "UserProfile")
                         .WithMany("Addresses")
-                        .HasForeignKey("UserProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserProfileId1");
                 });
 
             modelBuilder.Entity("EtsyClone.Models.UserProfile", b =>
