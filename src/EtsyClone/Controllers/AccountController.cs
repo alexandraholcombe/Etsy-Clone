@@ -126,7 +126,7 @@ namespace EtsyClone.Controllers
 
         public IActionResult AddAddress()
         {
-            var countries = Country.GetCountries();
+            List<Country> countries = Country.GetCountries();
             var userId = _userManager.GetUserId(HttpContext.User);
             var user = _db.Users.FirstOrDefault(u => u.Id == userId);
             var profile = _db.UserProfiles.FirstOrDefault(p => p.ApplicationUserId == user.Id);

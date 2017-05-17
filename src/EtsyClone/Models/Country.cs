@@ -25,7 +25,7 @@ namespace EtsyClone.Models
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
-            var countryList = JsonConvert.DeserializeObject<List<Country>>(jsonResponse.ToString());
+            var countryList = JsonConvert.DeserializeObject<List<Country>>(jsonResponse["results"].ToString());
             return countryList;
         }
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
