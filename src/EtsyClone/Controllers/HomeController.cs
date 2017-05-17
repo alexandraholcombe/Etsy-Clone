@@ -13,7 +13,7 @@ namespace EtsyClone.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return RedirectToAction("Register", "Account");
+            return View();
         }
 
         public IActionResult Error()

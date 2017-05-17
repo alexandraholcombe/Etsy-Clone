@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using EtsyClone.ViewModels;
+
+@model ProfileViewModel
+
+<h1>@Model.Profile.CombineName()</h1>
