@@ -8,9 +8,10 @@ using EtsyClone.Models;
 namespace EtsyClone.Migrations
 {
     [DbContext(typeof(EtsyContext))]
-    partial class EtsyContextModelSnapshot : ModelSnapshot
+    [Migration("20170517234006_AddStateToAddressModel")]
+    partial class AddStateToAddressModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

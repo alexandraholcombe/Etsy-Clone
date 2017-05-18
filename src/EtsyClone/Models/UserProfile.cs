@@ -27,5 +27,12 @@ namespace EtsyClone.Models
         {
             return input + "'s";
         }
+
+        //public IEnumerable<Address> GetAddresses()
+        //{
+        //    IAddressRepository addressRepo = new IAddressRepository();
+        //    var Addresses = IAddressRepository.Addresses
+        //    return Addresses;
+        //}
     }
 }

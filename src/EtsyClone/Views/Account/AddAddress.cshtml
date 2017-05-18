@@ -13,7 +13,7 @@ I'm working
     <div class="modal-body">
         <div class="form-group">
             @Html.LabelFor(m => m.Country)
-            @Html.TextBoxFor(m => m.Country, new { @class = "form-control", required = "required" })
+            @Html.DropDownListFor(m => m.Country, @Model.Countries, "Select Country", new { @class = "form-control", required = "required" })
         </div>
 
         <div class="form-group">

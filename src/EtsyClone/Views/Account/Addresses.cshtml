@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Shipping Addresses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using EtsyClone.ViewModels;
+
+@model AddressesViewModel
+
+<h1>Your shipping addresses</h1>
+
+@foreach (var address in Model.Addresses)
+{
+    <div class="card">
+        <div class="card-body">
+                <span class="name">@address.FullName</span>
+                <span class="address-line">@address.Street</span>
+                @if (address.Street2 != null)
+                {
+                    <span class="address-line">@address.Street2</span>
+                }
+                <span class="address-line">@address.City, @address.State, @address.ZipCode</span>
+                <span class="address-line">@address.Country</span>
+        </div>
+        <div class="card-base">
+
+        </div>
+    </div>
 }

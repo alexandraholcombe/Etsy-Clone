@@ -17,6 +17,7 @@ namespace EtsyClone.Models
         public string Street { get; set; }
         public string Street2 { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public string ZipCode { get; set; }
         public bool IsDefault { get; set; }
         public virtual UserProfile UserProfile { get; set; }
@@ -28,6 +29,7 @@ namespace EtsyClone.Models
                 UserProfileId = vm.UserProfileId,
                 FullName = vm.FullName,
                 Country = vm.Country,
+                State = vm.State,
                 Street = vm.Street,
                 Street2 = vm.Street2,
                 City = vm.City,

@@ -20,13 +20,22 @@ namespace EtsyClone.Controllers
         private readonly EtsyContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private IAddressRepository _addressRepo;
         //private readonly RoleManager<Role> _roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, EtsyContext db)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, EtsyContext db, IAddressRepository addressRepo = null)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
+            if(addressRepo == null)
+            {
+                _addressRepo = new EFAddressRepository();
+            }
+            else
+            {
+                _addressRepo = addressRepo;
+            }
         }
 
         // GET: /<controller>/
@@ -148,9 +157,18 @@ namespace EtsyClone.Controllers
         public IActionResult AddAddress(NewAddressViewModel vm)
         {
             Address newAddress = Address.CreateAddress(vm);
-            _db.Addresses.Add(newAddress);
-            _db.SaveChanges();
+            _addressRepo.Save(newAddress);
             return RedirectToAction("Addresses", "Account", vm.UserProfileId);
+        }
+        
+        public IActionResult Addresses()
+        {
+            AddressesViewModel vm = new AddressesViewModel();
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var user = _db.Users.FirstOrDefault(u => u.Id == userId);
+            var profile = _db.UserProfiles.FirstOrDefault(p => p.ApplicationUserId == user.Id);
+            vm.Addresses = profile.GetAddresses();
+            return View(vm);
         }
     }
 }
